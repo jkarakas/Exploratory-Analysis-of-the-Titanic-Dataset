@@ -11751,8 +11751,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="text-align: right">Ioannis Karakasoglou Breier, 03 Apr 2017</div><h1 id="Data-Analyst-Nanodegree">Data Analyst Nanodegree<a class="anchor-link" href="#Data-Analyst-Nanodegree">&#182;</a></h1><h3 id="P2:-Investigate-a-Dataset-(Titanic-Data)">P2: Investigate a Dataset (Titanic Data)<a class="anchor-link" href="#P2:-Investigate-a-Dataset-(Titanic-Data)">&#182;</a></h3><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/RMS_Titanic_Ad_April_10%2C_1912.jpg/400px-RMS_Titanic_Ad_April_10%2C_1912.jpg" alt="Titanic Ad"></p>
-<center><a href="https://en.wikipedia.org/wiki/RMS_Titanic">Display ad for Titanic's first but never made sailing from New York on 20 April 1912 </a><br></center><h3 id="Dataset-Information/-Data-Dictionary/Variable-Notes">Dataset Information/ Data Dictionary/Variable Notes<a class="anchor-link" href="#Dataset-Information/-Data-Dictionary/Variable-Notes">&#182;</a></h3><p>The sinking of the RMS Titanic is one of the most infamous shipwrecks in history.  On April 15, 1912, during her maiden voyage, the Titanic sank after colliding with an iceberg, killing 1502 out of 2224 passengers and crew. This sensational tragedy shocked the international community and led to better safety regulations for ships.</p>
+<div style="text-align: right">Ioannis Karakasoglou Breier, 03 Apr 2017</div><h1 id="Data-Analyst-Nanodegree">Data Analyst Nanodegree<a class="anchor-link" href="#Data-Analyst-Nanodegree">&#182;</a></h1><h2 id="P2:-Investigate-a-Dataset-(Titanic-Data)">P2: Investigate a Dataset (Titanic Data)<a class="anchor-link" href="#P2:-Investigate-a-Dataset-(Titanic-Data)">&#182;</a></h2><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/RMS_Titanic_Ad_April_10%2C_1912.jpg/400px-RMS_Titanic_Ad_April_10%2C_1912.jpg" alt="Titanic Ad"></p>
+<center><a href="https://en.wikipedia.org/wiki/RMS_Titanic">Display ad for Titanic's first but never made sailing from New York on 20 April 1912 </a><br></center><h2 id="Project-Overview">Project Overview<a class="anchor-link" href="#Project-Overview">&#182;</a></h2><p>In this project, we will analyze the Titanic Dataset and communicate our findings about it. We will use the Python libraries Scipy, NumPy, Pandas, Matplotlib and Seaborn.</p>
+<h2 id="Dataset-Information/-Data-Dictionary/Variable-Notes">Dataset Information/ Data Dictionary/Variable Notes<a class="anchor-link" href="#Dataset-Information/-Data-Dictionary/Variable-Notes">&#182;</a></h2><p>The sinking of the RMS Titanic is one of the most infamous shipwrecks in history.  On April 15, 1912, during her maiden voyage, the Titanic sank after colliding with an iceberg, killing 1502 out of 2224 passengers and crew. This sensational tragedy shocked the international community and led to better safety regulations for ships.</p>
 <p>One of the reasons that the shipwreck led to such loss of life was that there were not enough lifeboats for the passengers and crew. Although there was some element of luck involved in surviving the sinking, some groups of people were more likely to survive than others, such as women, children, and the upper-class.</p>
 <p><a href="https://d17h27t6h515a5.cloudfront.net/topher/2016/September/57e9a84c_titanic-data/titanic-data.csv">Titanic Data</a> - Contains demographics and passenger information from 891 of the 2224 passengers and crew on board the Titanic.</p>
 <table>
@@ -11821,9 +11822,9 @@ Parent = mother, father<br>
 Child = daughter, son, stepdaughter, stepson<br>
 Some children travelled only with a nanny, therefore parch=0 for them.</p>
 <h2 id="Initial-Questions">Initial Questions<a class="anchor-link" href="#Initial-Questions">&#182;</a></h2><ul>
-<li>What was the composition of the passengers regarding Gender, Cabin Class, Age, Family, Port of Embarkation.</li>
-<li>How did this composition change for the passengers that survived and those that didn't.</li>
-<li>What factors made people more likely to survive</li>
+<li>Did the  Port of Embarkation affect the chances of surviving?.</li>
+<li>How did the other factors influence this relationship?</li>
+<li>Did Age effect the chances of surviving? </li>
 </ul>
 <h2 id="Initial-Data-Investigation">Initial Data Investigation<a class="anchor-link" href="#Initial-Data-Investigation">&#182;</a></h2><p>We will load the necessary Python libraries for our analysis and set some parameters.</p>
 
@@ -11831,22 +11832,6 @@ Some children travelled only with a nanny, therefore parch=0 for them.</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2_contingency</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-notebook&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -11859,17 +11844,6 @@ Some children travelled only with a nanny, therefore parch=0 for them.</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Load the CSV into a Pandas Dataframe</span>
-<span class="n">titanic_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;titanic-data.csv&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -11883,22 +11857,12 @@ Some children travelled only with a nanny, therefore parch=0 for them.</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">titanic_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -12008,16 +11972,6 @@ Some children travelled only with a nanny, therefore parch=0 for them.</p>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">titanic_data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -12062,37 +12016,15 @@ memory usage: 83.6+ KB
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Drop the unwanted columns</span>
-<span class="n">n_titanic_data</span><span class="o">=</span><span class="n">titanic_data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Cabin&#39;</span><span class="p">,</span><span class="s1">&#39;Ticket&#39;</span><span class="p">,</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span>
-                                  <span class="s1">&#39;Fare&#39;</span><span class="p">,</span><span class="s1">&#39;PassengerId&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">n_titanic_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -12172,16 +12104,6 @@ memory usage: 83.6+ KB
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">n_titanic_data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -12227,7 +12149,7 @@ However, by using the mean or median , we can bias any relationships that we are
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Further-Exploration---Conclusions---Visualizations">Further Exploration - Conclusions - Visualizations<a class="anchor-link" href="#Further-Exploration---Conclusions---Visualizations">&#182;</a></h3>
+<h2 id="Further-Exploration---Conclusions---Visualizations">Further Exploration - Conclusions - Visualizations<a class="anchor-link" href="#Further-Exploration---Conclusions---Visualizations">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12242,24 +12164,6 @@ However, by using the mean or median , we can bias any relationships that we are
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Make another copy of the new dataframe</span>
-<span class="n">descript</span> <span class="o">=</span> <span class="n">n_titanic_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-<span class="c1">#Change the embarked keys to better readable ones</span>
-<span class="n">descript</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Embarked&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;Q&#39;</span><span class="p">],</span>
-                                      <span class="p">[</span><span class="s1">&#39;1: Cherbourg&#39;</span><span class="p">,</span><span class="s1">&#39;2: Southampton&#39;</span><span class="p">,</span><span class="s1">&#39;3: Queenstown&#39;</span><span class="p">],</span>
-                                      <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="c1">#And the survived keys</span>
-<span class="n">descript</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="s1">&#39;no&#39;</span><span class="p">,</span><span class="s1">&#39;yes&#39;</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -12273,28 +12177,6 @@ However, by using the mean or median , we can bias any relationships that we are
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Make a function to get the composition of the variables per number of passengers</span>
-<span class="k">def</span> <span class="nf">comp_plot</span><span class="p">(</span><span class="n">col</span><span class="p">,</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Group by col1, sort by size , return and plot the dataframe</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">gr</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-    <span class="n">gr</span><span class="p">[</span><span class="s1">&#39;Passenger No&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-    <span class="n">gr</span><span class="p">[</span><span class="s1">&#39;Passenger ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">gr</span><span class="p">[</span><span class="s1">&#39;Passenger No&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">gr</span><span class="p">[</span><span class="s1">&#39;Passenger No&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-    
-    <span class="k">print</span> <span class="p">(</span><span class="s1">&#39;Total No. of Passengers:{}&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gr</span><span class="p">[</span><span class="s1">&#39;Passenger No&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-    <span class="n">gr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Passenger &#39;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">gr</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -12302,22 +12184,12 @@ However, by using the mean or median , we can bias any relationships that we are
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will start with the <code>Embarked</code> variable.</p>
+<h3 id="Analysis-of-the-Embarked-variable.">Analysis of the <code>Embarked</code> variable.<a class="anchor-link" href="#Analysis-of-the-Embarked-variable.">&#182;</a></h3><p>We will start with the composition of passengers based on their port of embarkation.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">comp_plot</span><span class="p">(</span><span class="s1">&#39;Embarked&#39;</span><span class="p">,</span><span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -12330,7 +12202,7 @@ However, by using the mean or median , we can bias any relationships that we are
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -12735,54 +12607,20 @@ mZmZWeW5qDUzMzOzynNRa2ZmZmaV56LWzMzMzCrv/wHsFySUcV6KPAAAAABJRU5ErkJggg==
 <p>We see that the majority of passengers (644 of 889 - 72%) embarked in Southhampton and only 77 passengers - 9% -  embarked in Queenstown</p>
 <p>Let's examine the percentages of passengers that survived ,depending on their port of embarkation.</p>
 <p><em>We will make a function for this operation since we will use for the other variables as well</em></p>
-
+<h3 id="Correlation-of-Survived-with-Embarked-.">Correlation of <code>Survived</code> with <code>Embarked</code> .<a class="anchor-link" href="#Correlation-of-Survived-with-Embarked-.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">perc_bar</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">,</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Group a Dataframe df by Col1 and Col2, sort by size and unstack by Col1</span>
-<span class="sd">    Return the grouped Dataframe and plot a bar plot</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="c1">#Group by Survived and Embarked and unstack by Survived</span>
-    <span class="n">grouped</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">col1</span><span class="p">,</span><span class="n">col2</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">col1</span><span class="p">)</span>
-
-    <span class="c1">#Tranform to percentages</span>
-    <span class="n">grouped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">grouped</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">grouped</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="c1"># plot and return table</span>
-    <span class="n">grouped</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">stacked</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Percentage&#39;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">grouped</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">perc_bar</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">,</span> <span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -13139,28 +12977,17 @@ uEqSJKkW/gc+uwlSNFjLywAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We see that 55% of passengers embarked in Cherbourg survived compared to 34% and 39% at Southhampton and Queensberg respectively.</p>
 <p>This is counter-intuitive at a first look. Investigating deeper into the composition of the passengers regarding their gender and their class may given us more information about this relationship.</p>
-
+<h3 id="Correlation-of-Embarked-with-Pclass.">Correlation of <code>Embarked</code> with <code>Pclass</code>.<a class="anchor-link" href="#Correlation-of-Embarked-with-Pclass.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Calculate percentages of port passengers per Class</span>
-<span class="n">perc_bar</span><span class="p">(</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span><span class="s1">&#39;Embarked&#39;</span><span class="p">,</span><span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -13507,27 +13334,17 @@ mAAAAABJRU5ErkJggg==
 <p>51% of the passengers embarked in Cherbourg are in the 1st Pclass compared to 20% and 3% respectively for Southhampton and Queenstown.</p>
 <p>It looks like the class may play a role in port of embarkation's relationship with survibability.</p>
 <p>Let's explore the survivability based on the <code>Pcclass</code> variable further.</p>
-
+<h3 id="Correlation-of-Survived-with-Pclass.">Correlation of <code>Survived</code> with <code>Pclass</code>.<a class="anchor-link" href="#Correlation-of-Survived-with-Pclass.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">perc_bar</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Pclass&#39;</span><span class="p">,</span><span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -13813,28 +13630,17 @@ YHCVJElSJhhcJUmSlAkGV0mSJGWCwVWSJEmZ8P8XUlc1yNvTKQAAAABJRU5ErkJggg==
 <p>63% of 1st class passengers survived compared to 47% and 24% for the 2nd and 3rd class respectively.</p>
 <p>Indeed, survivability seems to be correlated with the <code>Pcclass</code> and this could be the main factor behind the correlation with the port of embarkation as well.</p>
 <p>Let's investigate <code>Embarked</code> and the correlation with <code>Sex</code></p>
-
+<h3 id="Correlation-of-Embarked-with-Sex.">Correlation of <code>Embarked</code> with <code>Sex</code>.<a class="anchor-link" href="#Correlation-of-Embarked-with-Sex.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Calculate percentages of port passengers per Sex</span>
-<span class="n">perc_bar</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span><span class="s1">&#39;Embarked&#39;</span><span class="p">,</span><span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -14195,21 +14001,11 @@ JDWCiaskSZIawcRVkiRJjWDiKkmSpEYwcZUkSVIj/BciXZItSXj2xQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>There does not seem to be a clear pattern  related to <code>Sex</code> that could be contributing to the increased survivability of the Cherbourg passengers.</p>
 <p>Let's see the <code>Sex</code> composition of the whole population.</p>
-
+<h3 id="Analysis-of-the--Sex-variable.">Analysis of the  <code>Sex</code> variable.<a class="anchor-link" href="#Analysis-of-the--Sex-variable.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">comp_plot</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span><span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -14222,7 +14018,7 @@ JDWCiaskSZIawcRVkiRJjWDiKkmSpEYwcZUkSVIj/BciXZItSXj2xQAAAABJRU5ErkJggg==
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -14542,28 +14338,17 @@ qXn/Ak0AOWL9RxTrAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>And of the <code>Pclass</code>.</p>
-
+<h3 id="Correlation-of--Sex-with-Pclass.">Correlation of  <code>Sex</code> with <code>Pclass</code>.<a class="anchor-link" href="#Correlation-of--Sex-with-Pclass.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Calculate percentages of Pclass per Sex</span>
-<span class="n">perc_bar</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span><span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -14859,27 +14644,17 @@ SZIkJcHgKkmSpCQYXCVJkpSE/w9ecQcNKfEzyQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>And the survivability based on <code>Sex</code></p>
-
+<h3 id="Correlation-of--Sex-with-Survived">Correlation of  <code>Sex</code> with <code>Survived</code><a class="anchor-link" href="#Correlation-of--Sex-with-Survived">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">perc_bar</span><span class="p">(</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="n">descript</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -15173,30 +14948,280 @@ RK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>74% of females survived compared to 19% for males. 44% of the 1st class(which had a 65% survivability) comprised of females compared to 29% of the third class (24% survivability).</p>
-<p>Further statistical tests  need to be conducted but it seems that the rule 'Women and children first' has strong effect on the correlation of other variables to survivability as well.</p>
-<p>Let's examine now the age distribution of the passengers and how <code>Age</code> affected their chances of survival.</p>
+<p>We can observe this relationship in the following seaborn barplot where the black lines represent confidence intervals built using bootstrapping.</p>
+<h3 id="Correlation-of-Survived-with-Sex-and-Pclass.">Correlation of <code>Survived</code> with <code>Sex</code> and <code>Pclass</code>.<a class="anchor-link" href="#Correlation-of-Survived-with-Sex-and-Pclass.">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+SZJS6f8DmHhJoKxQeSEAAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The proportion of survival for females in the first class was almost 100% in the first class compared to 50% in the third class.</p>
+<p>Further statistical tests  need to be conducted but it seems that the rule 'Women and children first' together with the Class have a compound effect on survivability effect on the correlation of other variables to survivability as well.</p>
+<h3 id="Analysis-of-the-Age-variable">Analysis of the <code>Age</code> variable<a class="anchor-link" href="#Analysis-of-the-Age-variable">&#182;</a></h3><p>Let's examine now the age distribution of the passengers and how <code>Age</code> affected their chances of survival.</p>
 <p>We will start with a plot of the entire population.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Make a dataframe for non missing &#39;Age&#39;values</span>
-<span class="n">not_missing</span> <span class="o">=</span> <span class="n">n_titanic_data</span><span class="p">[(</span><span class="n">n_titanic_data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())]</span> 
-
-<span class="c1">#And replace the survived keys</span>
-<span class="n">not_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="s1">&#39;no&#39;</span><span class="p">,</span><span class="s1">&#39;yes&#39;</span><span class="p">],</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-<span class="k">print</span> <span class="p">(</span><span class="s1">&#39;No. of Passengers with not missing Age Values:{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">not_missing</span><span class="p">)))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -15214,20 +15239,6 @@ RK5CYII=
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span><span class="n">bins</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -15861,29 +15872,12 @@ XEmSJBXlN9ANSS9ih8ZVAAAAAElFTkSuQmCC
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Get summary descriptive statistics</span>
-<span class="n">v</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
-<span class="c1">#Change the index labels and round the values reported</span>
-<span class="n">v</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Population Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Std. Deviation&#39;</span><span class="p">,</span> <span class="s1">&#39;Min&#39;</span><span class="p">,</span> <span class="s1">&#39;25% Qt&#39;</span><span class="p">,</span> <span class="s1">&#39;Median&#39;</span><span class="p">,</span>\
-               <span class="s1">&#39;75% Qt&#39;</span><span class="p">,</span> <span class="s1">&#39;Max&#39;</span><span class="p">]</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">v</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -15949,16 +15943,6 @@ XEmSJBXlN9ANSS9ih8ZVAAAAAElFTkSuQmCC
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">not_missing</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Survived&quot;</span><span class="p">,</span><span class="n">sharey</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span><span class="n">normed</span><span class="o">=</span><span class="bp">True</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -16236,16 +16220,6 @@ rhlYELJCSQAAAABJRU5ErkJggg==
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">not_missing</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Survived&quot;</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -16525,28 +16499,6 @@ We would like to examine if this was by luck or by some other underlying reason 
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Make a datframe with the sample populations</span>
-<span class="n">age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">age</span><span class="p">[</span><span class="s1">&#39;all&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span>
-<span class="n">not_survived</span> <span class="o">=</span> <span class="n">age</span><span class="p">[</span><span class="s1">&#39;not-survived&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">][</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;no&#39;</span><span class="p">]</span>
-<span class="n">survived</span> <span class="o">=</span> <span class="n">age</span><span class="p">[</span><span class="s1">&#39;survived&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">][</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;yes&#39;</span><span class="p">]</span>
-
-<span class="c1">#Get the summary statistics</span>
-<span class="n">var</span> <span class="o">=</span> <span class="n">age</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-
-<span class="c1">#Change the index labels and round the values reported</span>
-<span class="n">var</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sample Size&#39;</span><span class="p">,</span> <span class="s1">&#39;Mean&#39;</span><span class="p">,</span> <span class="s1">&#39;Std. Deviation&#39;</span><span class="p">,</span> <span class="s1">&#39;Min&#39;</span><span class="p">,</span> <span class="s1">&#39;25% Qt&#39;</span><span class="p">,</span> <span class="s1">&#39;Median&#39;</span><span class="p">,</span>\
-               <span class="s1">&#39;75% Qt&#39;</span><span class="p">,</span> <span class="s1">&#39;Max&#39;</span><span class="p">]</span>
-<span class="n">var</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -16560,22 +16512,12 @@ We would like to examine if this was by luck or by some other underlying reason 
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">var</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;not-survived&#39;</span><span class="p">,</span><span class="s1">&#39;survived&#39;</span><span class="p">]]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -16644,7 +16586,7 @@ We would like to examine if this was by luck or by some other underlying reason 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will conduct a statistical <em>chi-squared test</em>  to establish whether the <code>Survived</code> and <code>Age</code> variables are related.</p>
+<h2 id="Statistical-Test">Statistical Test<a class="anchor-link" href="#Statistical-Test">&#182;</a></h2><p>We will conduct a statistical <em>chi-squared test</em>  to establish whether the <code>Survived</code> and <code>Age</code> variables are related.</p>
 <p>Dependent Variable: <code>Survived</code><br>
 Independent Variable: <code>Age</code></p>
 <p>$O_{i}$: the observed value of survived for the given age<br>
@@ -16657,47 +16599,15 @@ $E_{i}$: the expected value of survived for the given age</p>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Create age-groups</span>
-<span class="n">age_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0-9&#39;</span><span class="p">,</span> <span class="s1">&#39;10-19&#39;</span><span class="p">,</span> <span class="s1">&#39;20-29&#39;</span><span class="p">,</span> <span class="s1">&#39;30-39&#39;</span><span class="p">,</span> <span class="s1">&#39;40-49&#39;</span><span class="p">,</span> <span class="s1">&#39;50-59&#39;</span><span class="p">,</span> <span class="s1">&#39;60-69&#39;</span><span class="p">,</span>
-              <span class="s1">&#39;70-80&#39;</span><span class="p">]</span>
-<span class="n">age_group_values</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">not_missing</span><span class="o">.</span><span class="n">Age</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
-                                   <span class="n">right</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">age_labels</span><span class="p">)</span>
-<span class="n">not_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;age-groups&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">age_group_values</span>
-
-<span class="c1">#Set the value for the one 80-year old outside the bins </span>
-<span class="c1">#chi-squared is notvalid for no of observations below 5</span>
-<span class="n">not_missing</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">80</span><span class="p">,</span> <span class="s1">&#39;age-groups&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;70-80&#39;</span>
-
-<span class="c1">#Make an observed-table for chi-squared test</span>
-<span class="n">obs_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">([</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]],[</span><span class="n">not_missing</span><span class="p">[</span><span class="s1">&#39;age-groups&#39;</span><span class="p">]])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">obs_table</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -16765,26 +16675,12 @@ $E_{i}$: the expected value of survived for the given age</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will compute the Pearson's Chi-square statistic based on the observations table.</p>
+<p>We will compute the Pearson's Chi-square statistic based on the above observations table:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Compute Chi-square statistic</span>
-<span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">obs_table</span><span class="p">)</span>
-
-<span class="c1">#report results</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;chi2:{}</span><span class="se">\n</span><span class="s1">dof:{}</span><span class="se">\n</span><span class="s1">p:{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chi2</span><span class="p">,</span><span class="n">dof</span><span class="p">,</span><span class="n">p</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -16808,7 +16704,7 @@ p:0.0148368781128
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For a=.05 and 7 degrees of freedom, p is smaller than 0.05 and we therefore reject the Null-Hypothesis and accept that <code>Survived</code> and <code>Age</code> are dependent variables and that there is indeed a relationship between age and survivability.</p>
+<p><strong>For a=.05 and 7 degrees of freedom, p is smaller than 0.05 and we therefore reject the Null-Hypothesis and accept that <code>Survived</code> and <code>Age</code> are dependent variables and that there is indeed a relationship between age and survivability.</strong></p>
 <p>Further statistical tests can be conducted to explore in more detail their relationship and correlation.</p>
 
 </div>
@@ -16841,6 +16737,9 @@ p:0.0148368781128
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
 </div>
     </div>
   </div>
