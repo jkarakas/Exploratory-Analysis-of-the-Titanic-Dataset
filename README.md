@@ -7,3 +7,5 @@
 
 ## Project Overview
 In this project, we will analyze the Titanic Dataset and communicate our findings about it. We will use the Python libraries Scipy, NumPy, Pandas, Matplotlib and Seaborn.
+
+[Report with code](https://github.com/jkarakas/P2-Investigate-a-dataset/blob/master/DAND-P2-Project-Code.html)
