@@ -6,6 +6,8 @@
 <center><a href="https://en.wikipedia.org/wiki/RMS_Titanic">Display ad for Titanic's first but never made sailing from New York on 20 April 1912 </a><br></center>
 
 ## Project Overview
-In this project, we will analyze the Titanic Dataset and communicate our findings about it. We will use the Python libraries Scipy, NumPy, Pandas, Matplotlib and Seaborn.
+In this project, I analyze the Titanic Dataset with the use of the Python libraries Scipy, NumPy, Pandas, Matplotlib and Seaborn.
 
-[Report with code](https://github.com/jkarakas/P2-Investigate-a-dataset/blob/master/DAND-P2-Project-Code.html)
+[Report with code](https://jkarakas.github.io/P2-Investigate-a-dataset/DAND-P2-Project-Code.html) 
+
+[For Civilians - Report with no-code](https://jkarakas.github.io/P2-Investigate-a-dataset/DAND-P2-Project-Nocode.html)
